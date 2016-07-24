@@ -1,1 +1,3 @@
-console.log("hello kek");
+var server = require("./modules/server.js");
+
+server.start();
