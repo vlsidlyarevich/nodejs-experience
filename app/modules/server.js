@@ -1,19 +1,10 @@
-var http = require("http");
-var url = require("url");
+var express = require('express');
+var app = express();
 
-function start(route) {
-    function onRequest(request, response) {
-        var pathname = url.parse(request.url).pathname;
+app.get('/', function (req, res) {
+  res.send('Hello World!');
+});
 
-        route(pathname);
-
-        response.writeHead(200, {"Content-Type": "text/plain"});
-        response.write("Hello world!");
-        response.end();
-    }
-
-    http.createServer(onRequest).listen(8080);
-    console.log("Server has started");
-}
-
-exports.start = start;
+app.listen(8080, function () {
+  console.log('Example app listening on port 3000!');
+});
