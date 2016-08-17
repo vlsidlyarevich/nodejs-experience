@@ -12,4 +12,7 @@ var postSchema = new mongoose.Schema({
     updated_at: {type: Date, default: Date.now}
 });
 
+var Post = mongoose.model('Post', postSchema);
+
 exports.postSchema  = postSchema;
+module.exports = Post;

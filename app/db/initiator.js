@@ -1,9 +1,7 @@
 var mongoose = require('mongoose');
-var postSchema = require('./schema');
+var Post = require('./schema');
 
 function initDb(){
-
-    var Post = mongoose.model('Post', postSchema);
 
     Post.create({
         id: 1, title: 'Man must explore, and this is exploration at its greatest.',
