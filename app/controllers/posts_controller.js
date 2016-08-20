@@ -7,9 +7,10 @@ router.get('/', function (request, response) {
     var pathName = url.parse(request.url).pathname;
     console.log(pathName + " requested");
     response.statusCode = 200;
-    response.setHeader("Content-Type", "text/plain");
-    response.json(postsDAO.getAllPosts().toObject());
-    response.end();
+    response.setHeader("Content-Type", "application/json");
+    postsDAO.getAllPosts(function(posts){
+        response.json(posts);
+    });
 });
 
 module.exports = router;
