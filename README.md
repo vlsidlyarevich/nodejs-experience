@@ -1,5 +1,5 @@
-# nodejs-start
-My experience with nodejs.
+# nodejs-experience
+Fullstack javascript-based blog-app. Backend is written on node v7.5.0, and client is written in pure javascript/html/css
 
 ### Requirements
 * install node packet manager: type `apt-get update && sudo apt-get install npm`
