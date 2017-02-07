@@ -1,7 +1,9 @@
-var server = require("./server.js");
-var initiator = require("./app/db/initiator.js");
-var dbConnector = require("./app/db/connector.js");
+"use strict";
+
+import server from "./server.js";
+import postsDAO from "./app/db/dao/postsDAO";
 
 // initiator.initDb();
 server.start();
-dbConnector.checkConnectivity();
+postsDAO.insertPost(new Post("1", "title", "subtitle", "content", "12:12:1996", "13:13:1313", "author"));
+postsDAO.getAllPosts(console.log());
