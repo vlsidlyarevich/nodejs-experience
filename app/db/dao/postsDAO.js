@@ -1,5 +1,4 @@
-var mongoose = require('mongoose');
-var Post = require('../schema');
+
 
 function getAllPosts(callback) {
     console.log("*****************Finding all posts*****************");
