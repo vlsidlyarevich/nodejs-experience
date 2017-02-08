@@ -1,9 +1,18 @@
 "use strict";
 
 import server from "./server.js";
-import postsDAO from "./app/db/dao/postsDAO";
+import initiator from "./app/db/initiator.js";
+import Post from "./app/db/models/post";
+import connectToDatabase from "./app/db/connector";
 
-// initiator.initDb();
+connectToDatabase();
+initiator.initDb();
 server.start();
-postsDAO.insertPost(new Post("1", "title", "subtitle", "content", "12:12:1996", "13:13:1313", "author"));
-postsDAO.getAllPosts(console.log());
+
+Post.find({}, function(err, posts) {
+    if (err){
+        console.log(err)
+    }
+
+    console.log(posts);
+});

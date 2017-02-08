@@ -10,7 +10,8 @@
     "serve": "node dist/app.js"
   },
   "dependencies": {
-    "mongodb": "2.2.22"
+    "mongodb": "2.2.22",
+    "mongoose": "4.8.1"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
