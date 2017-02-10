@@ -5,9 +5,9 @@
   "author": "vlsidlyarevich",
   "license": "MIT",
   "scripts": {
-    "start": "babel-node app.js --presets es2015,stage-2",
+    "start": "babel-node app/index.js --presets es2015,stage-2",
     "build": "babel lib -d dist",
-    "serve": "node dist/app.js"
+    "serve": "node dist/index.js"
   },
   "dependencies": {
     "mongodb": "2.2.22",
