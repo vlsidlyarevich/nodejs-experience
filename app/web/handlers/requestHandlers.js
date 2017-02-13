@@ -1,9 +1,9 @@
 "use strict";
 
-import { handlePost } from './postHandler';
+import { handlePostRoutes } from './postHandler';
 
 var handle = new Map();
-handle.set('/post', handlePost);
+handle.set('/post', handlePostRoutes);
 
 
 export { handle }
