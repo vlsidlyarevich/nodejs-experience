@@ -1,6 +1,6 @@
 "use strict";
 
-import { Post } from "../../db/models/post";
+import { PostsDAO } from "../../db/dao/postsDAO";
 import qs from "querystring";
 
 function handlePostRoutes(request, response, postData) {
@@ -18,7 +18,7 @@ function handlePostRoutes(request, response, postData) {
 }
 
 function handleGetPosts(request, response) {
-    Post.find((error, posts) => {
+    PostsDAO.getPosts((error, posts) => {
         if (error) {
             console.log("Error while obtaining list of posts");
             response.writeHead(400, {"Content-Type": "text/plain"});
@@ -37,17 +37,17 @@ function handleGetPost(request, response) {
 }
 
 function handleAddPost(request, response, postData) {
-    let post = qs.parse(postData);
+    let postToAdd = qs.parse(postData);
     let newPost = new Post({
-        title: post.title,
-        subtitle: post.subtitle,
-        content: post.content,
-        author: post.author,
-        date: post.date
+        title: postToAdd.title,
+        subtitle: postToAdd.subtitle,
+        content: postToAdd.content,
+        author: postToAdd.author,
+        date: postToAdd.date
     });
-    console.log(post);
+    console.log(postToAdd);
 
-    newPost.save((error, createdPost) => {
+    PostsDAO.createPost(newPost, (error, createdPost) => {
         if (error) {
             console.log("Error while saving post");
             response.writeHead(400, {"Content-Type": "text/plain"});
