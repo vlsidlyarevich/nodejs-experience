@@ -2,21 +2,21 @@
 
 import {Post} from '../models/post';
 
-export function PostsDAO() {
+export class PostsDAO {
 
-    function createPost(post, callback) {
+    static createPost(post, callback) {
         Post.create(post, (err, result) => {
             callback && callback(err, result);
         });
     }
 
-    function getPosts(callback) {
+    static getPosts(callback) {
         Post.find({}, (err, result) => {
             callback && callback(err, result);
         });
     }
 
-    function getPostById(id, callback) {
+    static getPostById(id, callback) {
         const query = {_id: id};
 
         Post.findOne(query, (err, result) => {
@@ -24,7 +24,7 @@ export function PostsDAO() {
         });
     }
 
-    function updatePostById(id, post, callback) {
+    static updatePostById(id, post, callback) {
         const query = {'_id': id};
 
         Post.findOneAndUpdate(query, post, {new: true}, (err, result) => {
@@ -32,7 +32,7 @@ export function PostsDAO() {
         });
     }
 
-    function deletePostById(id, callback) {
+    static deletePostById(id, callback) {
         const query = {'_id': id};
 
         Post.findOneAndRemove(query, (err, result) => {

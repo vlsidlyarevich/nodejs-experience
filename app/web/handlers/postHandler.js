@@ -1,6 +1,7 @@
 "use strict";
 
 import { PostsDAO } from "../../db/dao/postsDAO";
+import { Post } from "../../db/models/post";
 import qs from "querystring";
 
 function handlePostRoutes(request, response, postData) {
@@ -37,7 +38,8 @@ function handleGetPost(request, response) {
 }
 
 function handleAddPost(request, response, postData) {
-    let postToAdd = qs.parse(postData);
+    let postToAdd = JSON.parse(postData);
+    console.log(postToAdd);
     let newPost = new Post({
         title: postToAdd.title,
         subtitle: postToAdd.subtitle,
@@ -45,7 +47,6 @@ function handleAddPost(request, response, postData) {
         author: postToAdd.author,
         date: postToAdd.date
     });
-    console.log(postToAdd);
 
     PostsDAO.createPost(newPost, (error, createdPost) => {
         if (error) {
