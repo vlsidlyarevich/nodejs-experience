@@ -1,6 +1,6 @@
 "use strict";
 
-import {Post} from '../models/post';
+import { Post } from '../models/post';
 
 export class PostsDAO {
 
@@ -36,6 +36,12 @@ export class PostsDAO {
         const query = {'_id': id};
 
         Post.findOneAndRemove(query, (err, result) => {
+            callback && callback(err, result);
+        });
+    }
+
+    static clear(callback) {
+        Post.remove({}, (err, result) => {
             callback && callback(err, result);
         });
     }
