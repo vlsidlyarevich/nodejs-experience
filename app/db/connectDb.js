@@ -6,14 +6,14 @@ import { MONGODB_URL } from "../config";
 export default function () {
     return new Promise((resolve, reject)=>{
         mongoose.connect(MONGODB_URL);
-        configureMongoose(resolve);
+        configureMongoose(resolve, reject);
     });
 }
 
-function configureMongoose(callback) {
+function configureMongoose(resolve, reject) {
     mongoose.connection.on('open', () => {
         console.log('Mongoose default connection open to ' + MONGODB_URL);
-        callback("Connected");
+        resolve("Connected");
     });
 
     mongoose.connection.on('connected', () => {
@@ -22,10 +22,12 @@ function configureMongoose(callback) {
 
     mongoose.connection.on('error', (err) => {
         console.log('Mongoose default connection error: ' + err);
+        reject("Error")
     });
 
     mongoose.connection.on('disconnected', () => {
         console.log('Mongoose default connection disconnected');
+        reject("Error")
     });
 
     process.on('SIGINT', () => {

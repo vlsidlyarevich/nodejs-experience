@@ -9,9 +9,12 @@ import { SERVER_PORT } from './config';
 // const app = express();
 
 connectDb().then(
-    PostsDAO.clear(initDb().then(
-        PostsDAO.getPosts((error, result)=> {
-            console.log(result);
-        })
-    ))
+    () => PostsDAO.clear(
+        () => initDb(
+            () => PostsDAO.getPosts((error, result)=> {
+                console.log(result);
+            })
+        )
+    )
 );
+
