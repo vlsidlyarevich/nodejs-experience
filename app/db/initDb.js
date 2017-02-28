@@ -5,7 +5,7 @@ import async from 'async';
 
 export default function initDb(callback) {
 
-    console.log('Initiating the database');
+    console.log('[INFO] : Initiating database');
 
     let post1 = new Post({
         id: 1,
