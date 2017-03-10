@@ -1,8 +1,8 @@
 'use strict';
 
 import * as postController from '../controllers/postController';
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 router.get('/', postController.getPosts);
 router.get('/:id', postController.getPost);

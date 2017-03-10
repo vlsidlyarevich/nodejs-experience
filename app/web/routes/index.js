@@ -1,9 +1,10 @@
 'use strict';
 
-import posts from './posts';
-var express = require('express');
-var router = express.Router();
+import { router as posts } from './posts';
+import { app } from '../../app';
+const express = require('express');
+const router = express.Router();
 
-router.use('/posts', posts);
+app.use('/posts', posts);
 
 export { router };
