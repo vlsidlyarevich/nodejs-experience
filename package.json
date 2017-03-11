@@ -10,7 +10,6 @@
     "serve": "node dist/index.js"
   },
   "dependencies": {
-    "mongodb": "2.2.22",
     "mongoose": "4.8.1",
     "express": "^4.14.0",
     "async": "2.1.5",
