@@ -22,5 +22,24 @@ postSchema.pre('save', function (next) {
     next();
 });
 
+postSchema.statics.updateById = (id, post) => {
+    const query = {'_id': id};
+    return this.findOneAndUpdate(query, post);
+};
+
+postSchema.statics.getById = (id) => {
+    const query = {'_id': id};
+    return this.findOne(query);
+};
+
+postSchema.statics.deleteById = (id) => {
+    const query = {'_id': id};
+    return this.findOneAndRemove(query);
+};
+
+postSchema.statics.clear = () => {
+    return this.remove();
+};
+
 var Post = mongoose.model('Post', postSchema);
 export { Post };
