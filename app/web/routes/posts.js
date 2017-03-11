@@ -10,4 +10,4 @@ router.post('/', postController.addPost);
 router.put('/:id', postController.updatePost);
 router.delete('/:id', postController.deletePost);
 
-export { router };
+export default router;
