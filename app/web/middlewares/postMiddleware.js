@@ -3,7 +3,7 @@
 import { Post } from "../../db/models/post";
 
 function getPosts(request, response) {
-    const handle = (error, posts) => {
+    const handle = (posts, error) => {
         if (error) {
             // next(new Error("Bad request/error while obtaining posts"))
         } else {
@@ -18,7 +18,7 @@ function getPosts(request, response) {
 }
 
 function getPost(request, response, next) {
-    const handle = (error, post) => {
+    const handle = (post, error) => {
         if (error) {
             next(new Error("Bad request/error while obtaining post with id: " + request.params.id));
         } else {
@@ -32,7 +32,7 @@ function getPost(request, response, next) {
 }
 
 function addPost(request, response, next) {
-    const handle = (error, post) => {
+    const handle = (post, error) => {
         if (error) {
             next(new Error("Bad request/error while saving post"));
         } else {
@@ -46,7 +46,7 @@ function addPost(request, response, next) {
 }
 
 function updatePost(request, response, next) {
-    const handle = (error, post) => {
+    const handle = (post, error) => {
         if (error) {
             next(new Error("Bad request/error while updating post with id: " + request.params.id));
         }
@@ -59,7 +59,7 @@ function updatePost(request, response, next) {
 }
 
 function deletePost(request, response, next) {
-    const handle = (error, post) => {
+    const handle = (post, error) => {
         if (error) {
             next(new Error("Bad request/error while deleting post with id: " + request.params.id));
         } else {
