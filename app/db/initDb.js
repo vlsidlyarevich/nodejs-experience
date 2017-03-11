@@ -8,7 +8,6 @@ export default function initDb(callback) {
     console.log('[INFO] : Initiating database');
 
     let post1 = new Post({
-        id: 1,
         title: 'Man must explore, and this is exploration at its greatest.',
         subtitle: 'Problems look mighty small from 150 miles up.',
         content: '<p>What was most significant about the lunar voyage was not that man set foot on the Moon but that they set eye on the earth.</p>' +
@@ -21,7 +20,6 @@ export default function initDb(callback) {
     });
 
     let post2 = new Post({
-        id: 2,
         title: 'I believe every human has a finite number of heartbeats. I don\'t intend to waste any of mine.',
         subtitle: 'Problems look mighty small.',
         content: '<p>NASA is not about the ‘Adventure of Human Space Exploration’…We won’t be doing it just to get out there in space – we’ll be doing it because the things we learn out there will be making life better for a lot of people who won’t be able to go.</p>' +

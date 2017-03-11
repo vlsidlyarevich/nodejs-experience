@@ -35,16 +35,7 @@ function getPost(request, response) {
 }
 
 function addPost(request, response) {
-    let postToAdd = req.body;
-    let newPost = new Post({
-        title: postToAdd.title,
-        subtitle: postToAdd.subtitle,
-        content: postToAdd.content,
-        author: postToAdd.author,
-        date: postToAdd.date
-    });
-
-    PostsDAO.createPost(newPost, (error, post) => {
+    PostsDAO.createPost(request.body, (error, post) => {
         if (error) {
             console.log("[ERROR] : Error while saving post");
             response.writeHead(400, {"Content-Type": "text/plain"});
@@ -59,17 +50,9 @@ function addPost(request, response) {
 }
 
 function updatePost(request, response) {
-    let postToAdd = req.body;
-    let newPost = new Post({
-        title: postToAdd.title,
-        subtitle: postToAdd.subtitle,
-        content: postToAdd.content,
-        author: postToAdd.author,
-        date: postToAdd.date
-    });
-
-    PostsDAO.updatePostById(request.params.id, newPost, (error, post) => {
+    PostsDAO.updatePostById(request.params.id, request.body, (error, post) => {
         if (error) {
+            console.log(error);
             console.log("[ERROR] : Error while updating post with id: " + request.params.id);
             response.writeHead(400, {"Content-Type": "text/plain"});
             response.write("Bad request/error while updating post");
