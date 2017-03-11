@@ -2,10 +2,11 @@
 
 import { Post } from './models/post.js';
 import async from 'async';
+import { log } from '../app';
 
 export default function initDb(callback) {
 
-    console.log('[INFO] : Initiating database');
+    log.info('Initiating database');
 
     let post1 = new Post({
         title: 'Man must explore, and this is exploration at its greatest.',
@@ -34,7 +35,7 @@ export default function initDb(callback) {
     async.eachSeries(posts, function(post, asyncdone) {
         post.save(asyncdone);
     }, function(err) {
-        if (err) return console.log(err);
+        if (err) return log.error(err);
         callback && callback();
     });
 }

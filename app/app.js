@@ -6,8 +6,10 @@ import connectDb from './db/connectDb';
 import { SERVER_PORT } from './config';
 import posts from './web/routes/posts';
 import bodyParser from 'body-parser';
-import { Post } from 'db/models/post';
+import { Post } from './db/models/post';
+import bunyan from 'bunyan';
 
+export const log = bunyan.createLogger({name: "blog"});
 export const app = express();
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -15,12 +17,12 @@ app.use(bodyParser.json());
 
 app.use('/api/posts', posts);
 
-// app.use((err, req, res, next) => {
-//     console.log(err.message);
-//     response.writeHead(400, {"Content-Type": "text/plain"});
-//     response.write("Bad request/error while obtaining posts");
-//     response.end();
-// });
+app.use((err, request, response, next) => {
+    log.error(err.message);
+    response.writeHead(400, {"Content-Type": "text/plain"});
+    response.write("Bad request/error while obtaining posts");
+    response.end();
+});
 
 const onConnect = () => {
     //TODO refactor that and separate clear logic to script
