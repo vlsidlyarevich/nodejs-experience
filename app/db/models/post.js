@@ -37,9 +37,6 @@ postSchema.statics.deleteById = (id) => {
     return this.findOneAndRemove(query);
 };
 
-postSchema.statics.clear = () => {
-    return this.remove();
-};
 
 var Post = mongoose.model('Post', postSchema);
 export { Post };
