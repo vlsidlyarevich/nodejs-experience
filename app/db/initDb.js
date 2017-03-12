@@ -1,13 +1,14 @@
 "use strict";
 
 import { Post } from './models/post.js';
+import async from 'async';
+import { log } from '../app';
 
-export default function initDb() {
+export default function initDb(callback) {
 
-    console.log('Initiating the database');
+    log.info('Initiating database');
 
-    new Post({
-        id: 1,
+    let post1 = new Post({
         title: 'Man must explore, and this is exploration at its greatest.',
         subtitle: 'Problems look mighty small from 150 miles up.',
         content: '<p>What was most significant about the lunar voyage was not that man set foot on the Moon but that they set eye on the earth.</p>' +
@@ -17,15 +18,9 @@ export default function initDb() {
             '<p>When I orbited the Earth in a spaceship, I saw for the first time how beautiful our planet is. Mankind, let us preserve and increase this beauty, and not destroy it!</p>',
         date: '2016-08-13',
         author: 'vlsidlyarevich'
-    }).save(function (err, post) {
-        if (err)
-            console.log(err);
-        else
-            console.log("Post successfuly created: " + post);
     });
 
-    new Post({
-        id: 2,
+    let post2 = new Post({
         title: 'I believe every human has a finite number of heartbeats. I don\'t intend to waste any of mine.',
         subtitle: 'Problems look mighty small.',
         content: '<p>NASA is not about the ‘Adventure of Human Space Exploration’…We won’t be doing it just to get out there in space – we’ll be doing it because the things we learn out there will be making life better for a lot of people who won’t be able to go.</p>' +
@@ -33,10 +28,14 @@ export default function initDb() {
             '<p>As we got further and further away, it [the Earth] diminished in size. Finally it shrank to the size of a marble, the most beautiful you can imagine. That beautiful, warm, living object looked so fragile, so delicate, that if you touched it with a finger it would crumble and fall apart. Seeing this has to change a man.</p>',
         date: '2016-08-14',
         author: 'vlsidlyarevich'
-    }).save(function (err, post) {
-        if (err)
-            console.log(err);
-        else
-            console.log("Post successfuly created: " + post);
+    });
+
+    let posts = [post1, post2];
+
+    async.eachSeries(posts, function(post, asyncdone) {
+        post.save(asyncdone);
+    }, function(err) {
+        if (err) return log.error(err);
+        callback && callback();
     });
 }
