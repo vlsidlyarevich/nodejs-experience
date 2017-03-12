@@ -4,7 +4,6 @@ import { Post } from './models/post.js';
 import async from 'async';
 import { log } from '../app';
 
-//FIXME
 export default function initDb(callback) {
 
     log.info('Initiating database');
