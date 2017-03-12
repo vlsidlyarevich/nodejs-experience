@@ -22,17 +22,17 @@ postSchema.pre('save', function (next) {
     next();
 });
 
-postSchema.statics.updateById = (id, post) => {
+postSchema.statics.updateById = function (id, post) {
     const query = {'_id': id};
     return this.findOneAndUpdate(query, post);
 };
 
-postSchema.statics.getById = (id) => {
+postSchema.statics.getById = function (id) {
     const query = {'_id': id};
     return this.findOne(query);
 };
 
-postSchema.statics.deleteById = (id) => {
+postSchema.statics.deleteById = function (id) {
     const query = {'_id': id};
     return this.findOneAndRemove(query);
 };

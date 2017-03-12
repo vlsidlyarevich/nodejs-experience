@@ -2,15 +2,14 @@
 
 import { Post } from "../../db/models/post";
 
-function getPosts(request, response) {
+function getPosts(request, response, next) {
     const handle = (posts, error) => {
         if (error) {
-            // next(new Error("Bad request/error while obtaining posts"))
+            next(new Error("Bad request/error while obtaining posts"))
         } else {
             response.writeHead(200, {"Content-Type": "text/plain"});
             response.write(JSON.stringify(posts));
             response.end();
-            // next();
         }
     };
 
