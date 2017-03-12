@@ -7,7 +7,7 @@ var postSchema = new Schema({
     id: String,
     title: String,
     subtitle: String,
-    content: Boolean,
+    content: String,
     author: String,
     date: Date,
     created_at: Date,
