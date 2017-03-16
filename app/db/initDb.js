@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
-import { Post } from './models/post.js';
 import async from 'async';
+import { Post } from './models/post';
 import { log } from '../app';
 
 export default function initDb(callback) {
