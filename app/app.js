@@ -36,5 +36,6 @@ const onConnect = () => {
     )
 };
 
+//TODO make middleware to chek is it there connection to db, if no, wait 15 sec
 connectDb().then(onConnect);
 
