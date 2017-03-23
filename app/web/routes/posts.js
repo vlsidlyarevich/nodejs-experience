@@ -1,7 +1,8 @@
 'use strict';
 
-import * as postMiddleware from '../middlewares/postMiddleware';
 import express from 'express';
+import * as postMiddleware from '../middlewares/postMiddleware';
+
 const router = express.Router();
 
 router.get('/', postMiddleware.getPosts);

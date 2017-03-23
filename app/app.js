@@ -25,7 +25,7 @@ app.use((err, request, response, next) => {
 });
 
 const onConnect = () => {
-    //TODO refactor that and separate clear logic to script
+    // TODO refactor that and separate clear logic to script
     Post.remove().then(
         initDb(
             () => {
@@ -36,6 +36,6 @@ const onConnect = () => {
     );
 };
 
-//TODO make middleware to chek is it there connection to db, if no, wait 15 sec
+// TODO make middleware to chek is it there connection to db, if no, wait 15 sec
 connectDb().then(onConnect);
 
