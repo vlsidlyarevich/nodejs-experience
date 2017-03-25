@@ -1,5 +1,3 @@
-'use strict';
-
 import Post from '../../db/models/post';
 
 function getPosts(request, response, next) {
@@ -21,7 +19,6 @@ function getPost(request, response, next) {
         response.writeHead(200, { 'Content-Type': 'text/plain' });
         response.write(JSON.stringify(post));
         response.end();
-
     };
 
     function onFailure() {

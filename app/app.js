@@ -1,12 +1,10 @@
-'use strict';
-
 import express from 'express';
 import bunyan from 'bunyan';
 import bodyParser from 'body-parser';
 import initDb from './db/initDb';
 import connectDb from './db/connectDb';
 import { SERVER_PORT } from './config';
-import { Post } from './db/models/post';
+import Post from './db/models/post';
 import posts from '../app/web/routes/posts';
 
 export const log = bunyan.createLogger({ name: 'blog' });

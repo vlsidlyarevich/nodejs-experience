@@ -1,5 +1,3 @@
-'use strict';
-
 import mongoose from 'mongoose';
 import { MONGODB_URL } from '../config';
 import { log } from '../app';

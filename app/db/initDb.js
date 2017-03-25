@@ -1,11 +1,8 @@
-'use strict';
-
 import async from 'async';
 import { Post } from './models/post';
 import { log } from '../app';
 
 export default function initDb(callback) {
-
     log.info('Initiating database');
 
     const post1 = new Post({
