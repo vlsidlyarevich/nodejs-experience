@@ -1,13 +1,13 @@
 "use strict";
 
-import { User } from "../../db/models/user";
+import {User} from "../../db/models/user";
 
 function getUsers(request, response, next) {
     const handle = (users, error) => {
         if (error) {
             next(new Error("Bad request/error while obtaining users"))
         } else {
-            response.writeHead(200, {"Content-Type": "text/plain"});
+            response.writeHead(200, { "Content-Type": "text/plain" });
             response.write(JSON.stringify(users));
             response.end();
         }
@@ -21,7 +21,7 @@ function getUser(request, response, next) {
         if (error) {
             next(new Error("Bad request/error while obtaining user with id: " + request.params.id));
         } else {
-            response.writeHead(200, {"Content-Type": "text/plain"});
+            response.writeHead(200, { "Content-Type": "text/plain" });
             response.write(JSON.stringify(user));
             response.end();
         }
@@ -35,7 +35,7 @@ function addUser(request, response, next) {
         if (error) {
             next(new Error("Bad request/error while saving user"));
         } else {
-            response.writeHead(200, {"Content-Type": "text/plain"});
+            response.writeHead(200, { "Content-Type": "text/plain" });
             response.write(JSON.stringify(user));
             response.end();
         }
@@ -49,7 +49,7 @@ function updateUser(request, response, next) {
         if (error) {
             next(new Error("Bad request/error while updating user with id: " + request.params.id));
         }
-        response.writeHead(200, {"Content-Type": "text/plain"});
+        response.writeHead(200, { "Content-Type": "text/plain" });
         response.write(JSON.stringify(user));
         response.end();
     };
@@ -62,7 +62,7 @@ function deleteUser(request, response, next) {
         if (error) {
             next(new Error("Bad request/error while deleting user with id: " + request.params.id));
         } else {
-            response.writeHead(200, {"Content-Type": "text/plain"});
+            response.writeHead(200, { "Content-Type": "text/plain" });
             response.write(JSON.stringify(request.params.id));
             response.end();
         }
@@ -71,4 +71,4 @@ function deleteUser(request, response, next) {
     User.deleteById(request.params.id).then(handle);
 }
 
-export { getUsers, addUser, deleteUser, getUser, updateUser }
+export {getUsers, addUser, deleteUser, getUser, updateUser}
