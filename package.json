@@ -16,7 +16,8 @@
     "express": "^4.14.0",
     "async": "2.1.5",
     "body-parser": "1.17.1",
-    "bunyan": "1.8.8"
+    "bunyan": "1.8.8",
+    "jsonwebtoken": "7.4.0"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
