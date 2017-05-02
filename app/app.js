@@ -46,7 +46,7 @@ app.use('/api/auth', auth);
 
 app.use('/api/posts', posts);
 app.use('/api/users', users);
-app.use('/api/comments', comments);
+app.use('/api/posts/:postId/comments', comments);
 
 
 app.use((err, request, response, next) => {

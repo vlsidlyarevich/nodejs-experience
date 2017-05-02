@@ -14,7 +14,6 @@ function getComments(request, response, next) {
     Comment.getCommentsByPostId(request.params.id).then(handle);
 }
 
-
 function addComment(request, response, next) {
     const handle = (comment, error) => {
         if (error) {

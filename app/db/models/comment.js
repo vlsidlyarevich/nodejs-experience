@@ -35,6 +35,11 @@ commentSchema.statics.deleteById = function (id) {
     return this.findOneAndRemove(query);
 };
 
+commentSchema.statics.updateById = function (id, comment) {
+    const query = { '_id': id };
+    return this.findOneAndUpdate(query, comment);
+};
+
 
 const Comment = mongoose.model('Comment', commentSchema);
 export default Comment;
