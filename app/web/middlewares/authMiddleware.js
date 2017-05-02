@@ -20,7 +20,7 @@ function authenticate(request, response, next) {
                 data: user
             }, SECRET_KEY);
             response.writeHead(200, { "Content-Type": "text/plain" });
-            response.write(JSON.stringify(token));
+            response.write(JSON.stringify({ "token": token }));
             response.end();
         }
     };
