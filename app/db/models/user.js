@@ -39,7 +39,7 @@ userSchema.statics.deleteById = function (id) {
 
 userSchema.statics.getByUsername = function (username) {
     const query = { 'username': username };
-    return this._findOne(query);
+    return this.findOne(query);
 };
 
 var User = mongoose.model('User', userSchema);

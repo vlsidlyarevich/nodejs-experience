@@ -7,6 +7,7 @@ import { SERVER_PORT } from './config';
 import Post from './db/models/post';
 import posts from '../app/web/routes/posts';
 import users from '../app/web/routes/users';
+import comments from '../app/web/routes/comments';
 
 export const log = bunyan.createLogger({ name: 'blog' });
 export const app = express();
@@ -16,6 +17,8 @@ app.use(bodyParser.json());
 
 app.use('/api/posts', posts);
 app.use('/api/users', users);
+app.use('/api/comments', comments);
+
 
 app.use((err, request, response, next) => {
     log.error(err.message);
