@@ -80,25 +80,26 @@
                 if (!this.isEmailValid(this.credentials.username)) {
                     this.error = 'Email is not valid!'
                 } else {
-                    user.getCurrentUser(this)
-                        .then(result => {
-                                this.user = result.data;
-                                this.user.username = this.credentials.username;
-                                this.user.authorities = ''
-                                user.updateUser(this, this.user).then(result => {
-                                        this.info = 'Updated'
-                                        auth.user.username = this.user.username;
-                                        auth.logout()
-                                        auth.login(this, this.user, this)
-                                    },
-                                    error => {
-                                        this.error = error.data;
-                                    })
-                            },
-                            error => {
-                                this.error = error;
-                            }
-                        );
+                    alert('Updated!')
+//                    user.getCurrentUser(this)
+//                        .then(result => {
+//                                this.user = result.data;
+//                                this.user.username = this.credentials.username;
+//                                this.user.authorities = ''
+//                                user.updateUser(this, this.user).then(result => {
+//                                        this.info = 'Updated'
+//                                        auth.user.username = this.user.username;
+//                                        auth.logout()
+//                                        auth.login(this, this.user, this)
+//                                    },
+//                                    error => {
+//                                        this.error = error.data;
+//                                    })
+//                            },
+//                            error => {
+//                                this.error = error;
+//                            }
+//                        );
                 }
             },
             changePassword() {
@@ -107,26 +108,27 @@
                 if (this.credentials.confirmedPassword !== this.credentials.password) {
                     this.error = 'Password and confirmed password don\'t match!'
                 } else {
-                    user.getCurrentUser(this)
-                        .then(result => {
-                                this.user = result.data;
-                                this.user.password = this.credentials.password;
-                                this.user.authorities = ''
-                                user.updateUser(this, this.user)
-                                    .then(result => {
-                                            this.info = 'Updated'
-                                            auth.user.password = this.user.password;
-                                            auth.logout()
-                                            auth.login(this, this.user, this)
-                                        },
-                                        error => {
-                                            this.error = error.data;
-                                        })
-                            },
-                            error => {
-                                this.error = error;
-                            }
-                        );
+                    alert('Updated')
+//                    user.getCurrentUser(this)
+//                        .then(result => {
+//                                this.user = result.data;
+//                                this.user.password = this.credentials.password;
+//                                this.user.authorities = ''
+//                                user.updateUser(this, this.user)
+//                                    .then(result => {
+//                                            this.info = 'Updated'
+//                                            auth.user.password = this.user.password;
+//                                            auth.logout()
+//                                            auth.login(this, this.user, this)
+//                                        },
+//                                        error => {
+//                                            this.error = error.data;
+//                                        })
+//                            },
+//                            error => {
+//                                this.error = error;
+//                            }
+//                        );
                 }
             },
             deleteUser(){

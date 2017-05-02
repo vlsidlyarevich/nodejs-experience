@@ -14,10 +14,9 @@ export default {
     },
     login(context, creds, redirect) {
         context.$http.post(LOGIN_URL, creds, (data) => {
-           localStorage.setItem('x-auth-token', data.body)
+           localStorage.setItem('x-auth-token', data.token)
 
            this.user.authenticated = true;
-           alert(data.length)
             //this.setUserDetails(context);
 
             if (redirect) {
@@ -58,7 +57,7 @@ export default {
     },
 
     logout(context) {
-        localStorage.removeItem('token');
+        localStorage.removeItem('x-auth-token');
         this.user.authenticated = false;
         // if (!!context) {
         //     location.reload();

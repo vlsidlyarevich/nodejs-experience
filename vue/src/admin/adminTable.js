@@ -24,9 +24,10 @@ export default {
 
         $('select').addClass('selectpicker').attr('data-style', 'btn-primary');
 
-        $('td.editable-email').attr('data-ok-button', 'OK').attr('data-cancel-button', 'Cancel').attr('data-type', "textarea");
-        $('td.editable-password').attr('data-ok-button', 'OK').attr('data-cancel-button', 'Cancel').attr('data-type', "textarea");
-        $('td.editable-roles').attr('data-type', 'select').attr('data-data', '[["ROLE_ADMIN", "Administrator"], ["ROLE_USER", "User"]]');
+        $('td.editable-title').attr('data-ok-button', 'OK').attr('data-cancel-button', 'Cancel').attr('data-type', "textarea");
+        $('td.editable-subtitle').attr('data-ok-button', 'OK').attr('data-cancel-button', 'Cancel').attr('data-type', "textarea");
+        $('td.editable-content').attr('data-ok-button', 'OK').attr('data-cancel-button', 'Cancel').attr('data-type', "textarea");
+        $('td.editable-author').attr('data-ok-button', 'OK').attr('data-cancel-button', 'Cancel').attr('data-type', "textarea");
 
         $(document)
             .on('mousedown', ".jip-ok-button", (function () {
@@ -34,13 +35,9 @@ export default {
                 vm.rowNumber = row;
             }));
 
-        $(document).on('click', 'select', function () {
-            var row = $(this).parent().parent().parent().parent().children().index($(this).parent().parent().parent());
-            vm.rowNumber = row;
-        })
 
 
-        $('td.editable-email').jinplace({
+        $('td.editable-title').jinplace({
                 submitFunction(ev, data) {
                     if (vm.rows[vm.rowNumber][1] !== data) {
                         alert(vm.rows[vm.rowNumber][1])
@@ -55,9 +52,8 @@ export default {
             }
         );
 
-        $('td.editable-password').jinplace({
+        $('td.editable-subtitle').jinplace({
                 submitFunction(ev, data) {
-                    alert('hh')
                     if (vm.rows[vm.rowNumber][2] !== data) {
                         vm.rows[vm.rowNumber][2] = data;
                         // vm.dtHandle.clear();
@@ -69,10 +65,22 @@ export default {
                 }
             }
         );
-        $('td.editable-roles').jinplace({
+        $('td.editable-content').jinplace({
             submitFunction(ev, data) {
                 if (vm.rows[vm.rowNumber][3] !== data) {
                     vm.rows[vm.rowNumber][3] = data
+                    // vm.dtHandle.clear();
+                    // vm.dtHandle.rows.add(vm.rows);
+                    // vm.dtHandle.draw();
+                    context.redrawTable(vm);
+                    context.addStyles(vm);
+                }
+            }
+        });
+        $('td.editable-author').jinplace({
+            submitFunction(ev, data) {
+                if (vm.rows[vm.rowNumber][4] !== data) {
+                    vm.rows[vm.rowNumber][4] = data
                     // vm.dtHandle.clear();
                     // vm.dtHandle.rows.add(vm.rows);
                     // vm.dtHandle.draw();
@@ -90,9 +98,10 @@ export default {
             for (var i = 0; i < userCopy.length; i++) {
                 if (userCopy[i] != user[i + 1]) {
                     vm.user.id = user[0];
-                    vm.user.username = user[1];
-                    vm.user.password = user[2];
-                    vm.user.authorities = user[3];
+                    vm.user.title = user[1];
+                    vm.user.subtitle = user[2];
+                    vm.user.content = user[3];
+                    vm.user.author = user[4];
                     vm.editItem(vm.user)
                     break;
                 }

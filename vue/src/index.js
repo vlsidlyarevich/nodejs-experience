@@ -5,14 +5,14 @@ import Posts from './components/Posts.vue'
 import PersonalInfo from './components/Posts.vue'
 import Signup from './components/Signup.vue'
 import Login from './components/Login.vue'
-// import auth from './auth'
+import auth from './auth'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 
 Vue.use(VueResource)
 Vue.use(VueRouter)
 
-// auth.checkAuth()
+auth.checkAuth()
 // auth.setUserDetails(new Vue());
 
 export var router = new VueRouter()

@@ -5,13 +5,14 @@
     <div class="alert alert-info table-alert" v-if="info">
         <p>{{ info }}</p>
     </div>
-    <table id="table-id" class="display nowrap dataTable dtr-inline">
+    <table id="table-id" class="display  dataTable dtr-inline">
     </table>
 </template>
 
 <script>
     import auth from '../auth'
     import user from '../user'
+    import post from '../post'
     import adminTable from '../admin/adminTable'
 
     export default {
@@ -21,19 +22,21 @@
             return {
                 headers: [
                     {title: 'Id', class: 'odd-table-element'},
-                    {title: 'Email', class: 'even-table-element editable-email'},
-                    {title: 'Password', class: 'odd-table-element editable-password'},
-                    {title: 'Roles', class: 'even-table-element editable-roles'},
-                    {title: 'Actions', class: 'odd-table-element'}
+                    {title: 'Title', class: 'even-table-element editable-title'},
+                    {title: 'Subtitle', class: 'odd-table-element editable-subtitle'},
+                    {title: 'Content', class: 'even-table-element editable-content'},
+                    {title: 'Author', class: 'odd-table-element editable-author'},
+                    {title: 'Actions', class: 'even-table-element'}
                 ],
                 rows: [],
                 rowsCopy: [],
                 dtHandle: [],
                 user: {
                     id: '',
-                    username: '',
-                    password: '',
-                    authorities: ''
+                    title: '',
+                    subtitle: '',
+                    content: '',
+                    author: '',
                 },
                 error: '',
                 info: '',
@@ -47,16 +50,19 @@
                     let row = [];
                     let rowCopy = [];
 
-                    rowCopy.push(item.username);
-                    rowCopy.push(item.password);
-                    rowCopy.push(item.authorities);
+                    rowCopy.push(item.title);
+                    rowCopy.push(item.subtitle);
+                    rowCopy.push(item.content);
+                    rowCopy.push(item.author);
 
-                    row.push(item.id);
-                    row.push(item.username);
-                    row.push(item.password);
-                    row.push(item.authorities);
-                    row.push('<button class="btn btn-success edit-btn" id="' + item.id + '">Edit</button>' +
-                        '<button class="btn btn-danger delete-btn" id="' + item.id + '">Delete</button>')
+
+                    row.push(item._id);
+                    row.push(item.title);
+                    row.push(item.subtitle);
+                    row.push(item.content);
+                    row.push(item.author);
+                    row.push('<button class="btn btn-success edit-btn" id="' + item._id + '">Edit</button>' +
+                        '<button class="btn btn-danger delete-btn" id="' + item._id + '">Delete</button>')
 
                     vm.rows.push(row);
                     vm.rowsCopy.push(rowCopy)
@@ -72,17 +78,18 @@
             },
             editItem(item){
                 let vm = this;
-                user.updateUser(this, item)
+                post.updateUser(this, item)
                     .then(result => {
                             vm.info = 'Updated'
                             setTimeout(function () {
                                 vm.info = '';
                             }, 3000);
                             for (var i = 0; i < vm.rows.length; i++) {
-                                if (item.id === vm.rows[i][0]) {
-                                    vm.rowsCopy[i][0] = item.username;
-                                    vm.rowsCopy[i][1] = item.password;
-                                    vm.rowsCopy[i][2] = item.authorities;
+                                if (item._id === vm.rows[i][0]) {
+                                    vm.rowsCopy[i][0] = item.title;
+                                    vm.rowsCopy[i][1] = item.subtitle;
+                                    vm.rowsCopy[i][2] = item.content;
+                                    vm.rowsCopy[i][3] = item.author;
                                     break;
                                 }
                             }
@@ -111,7 +118,7 @@
                     },
                     callback: function (result) {
                         if (result) {
-                            user.deleteUser(vm, id)
+                            post.deleteUser(vm, id)
                                 .then(result => {
                                         vm.info = 'Deleted'
                                         setTimeout(function () {
@@ -148,7 +155,7 @@
         ready() {
             this.initialize();
             let vm = this;
-            user.getUsers(this)
+            post.getUsers(this)
                 .then(result => {
                         this.tableData(result.data, null);
                         adminTable.addStyles(vm)

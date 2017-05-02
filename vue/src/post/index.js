@@ -2,7 +2,7 @@ import {router} from '../index'
 import auth from '../auth'
 
 const API_URL = 'http://localhost:8000/'
-const USERS_URL = API_URL + 'api/users/'
+const USERS_URL = API_URL + 'api/posts/'
 // const CURRENT_USER_URL = API_URL + 'api/user/'
 
 export default {
