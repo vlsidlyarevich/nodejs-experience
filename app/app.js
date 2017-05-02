@@ -19,6 +19,7 @@ app.use(bodyParser.json());
 app.use(function (request, response, next) {
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-auth-token");
+    response.header("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE, PATCH");
     next();
 });
 
