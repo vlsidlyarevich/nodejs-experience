@@ -47,7 +47,7 @@
         methods: {
             submit() {
                 var credentials = {
-                    email: this.credentials.email,
+                    username: this.credentials.username,
                     password: this.credentials.password
                 }
                 var redirect = 'home';

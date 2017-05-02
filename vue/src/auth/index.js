@@ -14,9 +14,10 @@ export default {
     },
     login(context, creds, redirect) {
         context.$http.post(LOGIN_URL, creds, (data) => {
-           localStorage.setItem('x-auth-token', data.token)
+           localStorage.setItem('x-auth-token', data.body)
 
            this.user.authenticated = true;
+           alert(data.length)
             //this.setUserDetails(context);
 
             if (redirect) {
