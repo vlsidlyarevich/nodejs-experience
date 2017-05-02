@@ -3,7 +3,7 @@ import Comment from "../../db/models/comment";
 function getComments(request, response, next) {
     const handle = (comments, error) => {
         if (error) {
-            next(new Error("Bad request/error while obtaining comment with post id: " + request.params.id));
+            next(new Error("Bad request/error while obtaining comment with post id: " + request.params.postId));
         } else {
             response.writeHead(200, { "Content-Type": "text/plain" });
             response.write(JSON.stringify(comments));
@@ -11,7 +11,7 @@ function getComments(request, response, next) {
         }
     };
 
-    Comment.getCommentsByPostId(request.params.id).then(handle);
+    Comment.getCommentsByPostId(request.params.postId).then(handle);
 }
 
 function addComment(request, response, next) {
@@ -25,6 +25,7 @@ function addComment(request, response, next) {
         }
     };
 
+  //TODO add to body postId (request.params.postId)
     Comment.create(request.body).then(handle);
 }
 
